@@ -1,7 +1,12 @@
 <div class="todo-app">
     <h2>Redux Todo Application</h2>
-    <my-todo-list>
-        <my-todo *ngFor="let item of todos" [todo] = "item" (remove)="removeTodo($event)" (update)="update($event)"></my-todo>
-    </my-todo-list>
+    <div class="overlay" *ngIf="loading">
+            <div  class="loader"></div>
+    </div>
+    <div *ngIf="!loading">
+        <my-todo-list>
+            <my-todo *ngFor="let item of todos" [todo] = "item" (remove)="removeTodo($event)" (update)="update($event)"></my-todo>
+        </my-todo-list>
+    </div>
     <add-todo (todo)="addTodo($event)"></add-todo>
 </div>

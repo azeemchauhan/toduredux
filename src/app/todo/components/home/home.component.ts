@@ -10,9 +10,11 @@ import { TodoService } from '../../services';
 })
 export class HomeComponent {
   todos: Array<Todo>;
+  loading:boolean=true;
   constructor(private todoService:TodoService) {
     this.todoService.getTodo().subscribe((response:Todo[]) => {
       this.todos = response;
+      setTimeout(()=>this.loading = false, 2000);
     })
   }
   addTodo(todo:Todo):void {
@@ -22,7 +24,7 @@ export class HomeComponent {
     console.log(updatedTodo);
     this.todos = this.todos.map((todo: Todo) => {
       return (todo.id === updatedTodo.id)? updatedTodo:todo;;
-    })
+    });
   }
   removeTodo({ id }: Todo):void {
     this.todos = this.todos.filter((todo) => todo.id !== id);
