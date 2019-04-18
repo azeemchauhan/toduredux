@@ -1,0 +1,9 @@
+<div class="add-todo-form">
+    <a (click)="closeTodo()">&#10539;</a>
+    <div class="todo-form">
+        <input #title />
+        <span class="action">
+            <button (click)="addTodo(title.value)">Add Todo</button>
+        </span>
+    </div>
+</div>

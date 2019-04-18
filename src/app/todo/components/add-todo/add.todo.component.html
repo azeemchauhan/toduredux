@@ -1,0 +1,8 @@
+<div class="add-todo">
+    <div class="action" *ngIf="!isOpen">
+        <button (click)="openTodoForm()">Add Todo</button>
+    </div>
+    <ng-container *ngIf="isOpen">
+        <todo-form (close)="closeForm($event)"></todo-form>
+    </ng-container>
+</div>

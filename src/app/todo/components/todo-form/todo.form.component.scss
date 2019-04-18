@@ -1,0 +1,28 @@
+:host {
+    .add-todo-form {
+        min-height: 100px;
+        a {
+            float: right;
+            display: block;
+            cursor: pointer;
+            padding-right: 20px;
+        }
+        .todo-form {
+            padding-top:30px;
+            clear: both;
+            input {
+                padding: 3px 5px;
+            }
+        }
+        .action button {
+            background: rgb(157, 83, 199);
+            padding: 5px 5px;
+            margin: 2px 2px;
+            border-radius: 5px;
+            min-width: 100px;;
+            &:hover {
+                background: rgb(135, 32, 194);
+            }
+        }
+    }
+}

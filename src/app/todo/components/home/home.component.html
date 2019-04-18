@@ -1,0 +1,7 @@
+<div class="todo-app">
+    <h2>Redux Todo Application</h2>
+    <my-todo-list>
+        <my-todo *ngFor="let item of todos" [todo] = "item" (remove)="removeTodo($event)" (update)="update($event)"></my-todo>
+    </my-todo-list>
+    <add-todo (todo)="addTodo($event)"></add-todo>
+</div>
