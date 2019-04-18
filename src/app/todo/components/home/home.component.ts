@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../../model/todo.type';
 import { log } from 'util';
 
@@ -13,13 +13,15 @@ export class HomeComponent {
     this.todos = [{ id: "1", title: "Purchase protein" },{ id: "2", title: "Purchase Meat" },{ id: "3", title: "Purchase Milk" }]
   }
   addTodo(todo:Todo):void {
-    console.log(todo);
     this.todos.push(todo);
   }
-  update(todo:Todo):void {
-    console.log(todo);
+  update(updatedTodo:Todo):void {
+    console.log(updatedTodo);
+    this.todos = this.todos.map((todo: Todo) => {
+      return (todo.id === updatedTodo.id)? updatedTodo:todo;;
+    })
   }
-  removeTodo(id: string):void {
-    this.todos = this.todos.filter((todo) => todo.id === id)
+  removeTodo({ id }: Todo):void {
+    this.todos = this.todos.filter((todo) => todo.id !== id);
   }
 }

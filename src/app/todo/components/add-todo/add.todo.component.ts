@@ -16,4 +16,7 @@ export class AddTodoComponent {
   closeForm(open: boolean):void {
     this.isOpen = false;
   }
+  newTodoData(todo: Todo):void {
+    this.todo.emit(todo);
+  }
 }

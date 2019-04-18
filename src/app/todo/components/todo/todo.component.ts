@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output,EventEmitter } from '@angular/core';
 import { Todo } from '../../model/todo.type';
 
 
@@ -10,14 +10,20 @@ import { Todo } from '../../model/todo.type';
 })
 export class TodoComponent {
   @Input() todo: Todo;
+  @Output() remove:EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Output() update:EventEmitter<Todo> = new EventEmitter<Todo>();
   isOpen:boolean = false;
-  remove(): void {
-
-  }
-  update():void {
+  editTodo():void {
     this.isOpen = true;
   }
-  closeForm(value: boolean):void {
+  closeEdit(value: boolean):void {
     this.isOpen = false;
+  }
+  updateTodo(todo:Todo){
+    this.update.emit(todo)
+    this.isOpen = false;
+  }
+  removeTodo(todo: Todo): void {
+    this.remove.emit(todo);
   }
 }

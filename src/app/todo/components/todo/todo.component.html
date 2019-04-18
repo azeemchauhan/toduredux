@@ -2,11 +2,11 @@
     <ng-container *ngIf="!isOpen">
         <h3>{{todo.title}}</h3>
         <div class="action">
-            <button (click)= "remove(todo)">Remove</button>
-            <button (click)= "update(todo)">Update</button>
+            <button (click)= "removeTodo(todo)">Remove</button>
+            <button (click)= "editTodo(todo)">Update</button>
         </div>  
     </ng-container>
     <ng-container *ngIf="isOpen">
-        <todo-form (close)="closeForm($event)"></todo-form>
+        <todo-form [data]="todo" (close)="closeEdit($event)" (todo)="updateTodo($event)"></todo-form>
     </ng-container>
 </div>

@@ -3,6 +3,6 @@
         <button (click)="openTodoForm()">Add Todo</button>
     </div>
     <ng-container *ngIf="isOpen">
-        <todo-form (close)="closeForm($event)"></todo-form>
+        <todo-form (close)="closeForm($event)" (todo)="newTodoData($event)"></todo-form>
     </ng-container>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Todo } from '../../model/todo.type';
 
 
@@ -8,17 +8,18 @@ import { Todo } from '../../model/todo.type';
   styleUrls: ['./todo.form.component.scss']
 })
 export class TodoFormComponent {
-  
+
+  @Input() data?: Todo;
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() todo: EventEmitter<Todo> = new EventEmitter<Todo>();
-
+  
   closeTodo(): void {
     this.close.emit(true);
   }
   addTodo(title: string): void {
     if (!title) return;
     this.todo.emit({
-      id: "" + new Date().getTime(),
+      id: this.data?this.data.id:"" + new Date().getTime(),
       title: title
     })
   }
