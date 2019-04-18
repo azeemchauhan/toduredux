@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Todo } from '../../model/todo.type';
-import { log } from 'util';
+import { TodoService } from '../../services';
+
 
 @Component({
   selector: 'my-todo-app',
@@ -9,8 +10,10 @@ import { log } from 'util';
 })
 export class HomeComponent {
   todos: Array<Todo>;
-  constructor() {
-    this.todos = [{ id: "1", title: "Purchase protein" },{ id: "2", title: "Purchase Meat" },{ id: "3", title: "Purchase Milk" }]
+  constructor(private todoService:TodoService) {
+    this.todoService.getTodo().subscribe((response:Todo[]) => {
+      this.todos = response;
+    })
   }
   addTodo(todo:Todo):void {
     this.todos.push(todo);
