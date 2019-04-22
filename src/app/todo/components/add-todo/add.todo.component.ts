@@ -18,5 +18,6 @@ export class AddTodoComponent {
   }
   newTodoData(todo: Todo):void {
     this.todo.emit(todo);
+    this.closeForm(false)
   }
 }
