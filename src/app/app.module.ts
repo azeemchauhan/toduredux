@@ -4,6 +4,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TodoModule } from './todo/todo.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     TodoModule
     ],
   providers: [],

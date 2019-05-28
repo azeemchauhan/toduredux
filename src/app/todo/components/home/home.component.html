@@ -1,11 +1,11 @@
 <div class="todo-app">
     <h2>Redux Todo Application</h2>
-    <div class="overlay" *ngIf="loading">
+    <div class="overlay" *ngIf="(loading$ | async)">
             <div  class="loader"></div>
     </div>
-    <div *ngIf="!loading">
+    <div>
         <my-todo-list>
-            <my-todo *ngFor="let item of todos" [todo] = "item" (remove)="removeTodo($event)" (update)="update($event)"></my-todo>
+            <my-todo *ngFor="let item of todos$ | async" [todo] = "item" (remove)="removeTodo($event)" (update)="update($event)"></my-todo>
         </my-todo-list>
     </div>
     <add-todo (todo)="addTodo($event)"></add-todo>

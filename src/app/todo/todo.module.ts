@@ -7,14 +7,16 @@ import { AddTodoComponent } from './components/add-todo/add.todo.component';
 import { TodoFormComponent } from './components/todo.form/todo.form.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffect, reducers } from './store';
 @NgModule({
   declarations: [ HomeComponent, TodoComponent, TodoListComponent, AddTodoComponent, TodoFormComponent ],
   imports: [
     CommonModule,
     FormsModule,
-    StoreModule.forFeature('todo', reducer)
+    StoreModule.forFeature('todos', reducers),
+    EffectsModule.forFeature([ TodoEffect ])
   ],
   exports: [ HomeComponent ]
 })
-export class TodoModule { }
+export class TodoModule {}

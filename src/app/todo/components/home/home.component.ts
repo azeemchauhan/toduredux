@@ -1,32 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from '../../model/todo.type';
-import { TodoService } from '../../services';
-
+import { Store, select } from '@ngrx/store';
+import * as fromStore from '../../store';
+import { LoadTodo } from '../../store';
+import { Observable, from } from 'rxjs';
 
 @Component({
   selector: 'my-todo-app',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  todos: Array<Todo>;
-  loading:boolean=true;
-  constructor(private todoService:TodoService) {
-    this.todoService.getTodo().subscribe((response:Todo[]) => {
-      this.todos = response;
-      setTimeout(()=>this.loading = false, 2000);
-    })
+export class HomeComponent implements OnInit {
+  todos$: Observable<Todo[]> = this.store.select<any>(fromStore.selectFeatureTodos);
+  loading$: Observable<boolean>=this.store.select<any>(fromStore.selectTodosLoading);
+  todos = [];
+  constructor(private store: Store<fromStore.FeatureState>) { }
+  ngOnInit(): void {
+    this.store.dispatch(new LoadTodo());
   }
-  addTodo(todo:Todo):void {
-    this.todos.push(todo);
+  addTodo(todo: Todo): void {
+    this.store.dispatch(new fromStore.AddTodo({todo}))
   }
-  update(updatedTodo:Todo):void {
-    console.log(updatedTodo);
-    this.todos = this.todos.map((todo: Todo) => {
-      return (todo.id === updatedTodo.id)? updatedTodo:todo;;
-    });
+  update(todo: Todo): void {
+    this.store.dispatch(new fromStore.UpdateTodo({todo}));
   }
-  removeTodo({ id }: Todo):void {
-    this.todos = this.todos.filter((todo) => todo.id !== id);
+  removeTodo({ id }: Todo): void {
+    this.store.dispatch(new fromStore.RemoveTodo({id}));
   }
 }
