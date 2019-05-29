@@ -13,7 +13,9 @@ export interface ApplicationState {
 export const reducers: ActionReducerMap<ApplicationState> = {
     todos: fromTodos.reducer
 }
-const featureSelector = createFeatureSelector<ApplicationState, FeatureState>('todos');  //please note:- 'feature' should be slice of AppState
+const featureSelector = createFeatureSelector<ApplicationState>('todos');  //please note:- 'feature' should be slice of AppState
+
+const getTodosState = createSelector(featureSelector, (state: ApplicationState) => state.todos);
 
 
 export const getTodosLoading  = (state:FeatureState) => state.loading;
@@ -21,8 +23,6 @@ export const getTodosLoaded  = (state:FeatureState) => state.loaded;
 export const getTodos  = (state:FeatureState) => state.todo;
 
 
-
-
-export const selectFeatureTodos = createSelector(featureSelector, getTodos);
-export const selectTodosLoading = createSelector(featureSelector, getTodosLoading);
-export const selectTodosLoaded = createSelector(featureSelector, getTodosLoaded);
+export const selectFeatureTodos = createSelector(getTodosState, getTodos);
+export const selectTodosLoading = createSelector(getTodosState, getTodosLoading);
+export const selectTodosLoaded = createSelector(getTodosState, getTodosLoaded);

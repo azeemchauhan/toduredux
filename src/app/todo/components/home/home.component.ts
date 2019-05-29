@@ -10,7 +10,7 @@ import { Observable, from } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class TodoHomeComponent implements OnInit {
   todos$: Observable<Todo[]> = this.store.select<any>(fromStore.selectFeatureTodos);
   loading$: Observable<boolean>=this.store.select<any>(fromStore.selectTodosLoading);
   todos = [];

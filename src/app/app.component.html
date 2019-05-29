@@ -1,4 +1,16 @@
-<div class="myapp">
-    <my-todo-app></my-todo-app>
+<div class="app">
+    <div class="nav row">
+        <div class="column home">
+            <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        </div>
+        <div class="column todo">
+            <a [routerLink]="['/todo']" routerLinkActive="active">Todo</a>
+        </div>
+        <div class="column people">
+            <a [routerLink]="['/people']" routerLinkActive="active">People</a>
+        </div>
+    </div>
+    <div class="app-container">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-
