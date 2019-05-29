@@ -1,0 +1,10 @@
+<div class="people-app">
+    <h2>Redux People</h2>
+    <div class="people">
+        <div *ngIf="!loading" class="loader"></div>
+        <span *ngFor="let people of itemResults$ | async">
+                <my-people [people]="people"></my-people>
+        </span>
+    </div>
+</div>
+<!-- https://blog.angularindepth.com/reactive-scroll-position-restoration-with-rxjs-792577f842c -->
